@@ -52,14 +52,14 @@ public class Main extends Application {
         radioBtnHbox.setAlignment(Pos.CENTER);
 
         //VBox for bottom buttons and choicebox
-        HBox bottomVbox = new HBox();
-        bottomVbox.getChildren().addAll(choiceBox, showBtn, craschBtn);
-        bottomVbox.setAlignment(Pos.CENTER);
+        HBox bottomHbox = new HBox();
+        bottomHbox.getChildren().addAll(choiceBox, showBtn, craschBtn);
+        bottomHbox.setAlignment(Pos.CENTER);
         //Layout
         layout = new BorderPane();
         layout.setTop(valuablesLbl);
         layout.setCenter(listView);
-        layout.setBottom(bottomVbox);
+        layout.setBottom(bottomHbox);
         layout.setRight(radioBtnHbox);
         //Scene
         introScene = new Scene(layout, 500,500);
