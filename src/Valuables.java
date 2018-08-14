@@ -1,5 +1,3 @@
-package sample;
-
 public class Valuables {
     String name;
     double worth;

@@ -1,5 +1,3 @@
-package sample;
-
 //Worth should be stockQuote * worth;
 public class Stock extends Valuables {
     private String stockQuote;

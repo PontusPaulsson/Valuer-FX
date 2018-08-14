@@ -1,5 +1,3 @@
-package sample;
-
 //Worth should be calcul
 public class Device extends Valuables {
     private double priceWhenBought;

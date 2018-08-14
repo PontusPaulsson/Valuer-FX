@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.*;
 import javafx.geometry.Pos;
 import javafx.scene.*;
@@ -64,7 +62,7 @@ public class Main extends Application {
         layout.setBottom(bottomVbox);
         layout.setRight(radioBtnHbox);
         //Scene
-        introScene = new Scene(layout);
+        introScene = new Scene(layout, 500,500);
         window.setScene(introScene);
         window.show();
     }

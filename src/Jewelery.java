@@ -1,5 +1,3 @@
-package sample;
-
 //Gold jewelry is worth 2000 and silver is worth 700 and the jewelery is worth 500 extra per gemstone.
 public class Jewelery extends Valuables {
     private boolean isGold = false;
