@@ -85,15 +85,20 @@ public class Main extends Application {
         }
     }
     public void createDevice(){
+        //Labels
+        Label nameLabel = new Label("Name");
+        Label priceLabel = new Label("Price");
+        Label conditionLabel = new Label("Condition");
         //Borderpane
         BorderPane borderPane = new BorderPane();
         //Textfield for name
-        TextField nameField = new TextField("Name");
+        TextField nameField = new TextField();
         //Textfield for price
-        TextField priceField = new TextField("Price");
+        TextField priceField = new TextField();
         //Textfield for condition
-        TextField conditionField = new TextField("Condition");
-        VBox vBox = new VBox(nameField, conditionField, priceField); //Adding textfield to Vertical BOX
+        TextField conditionField = new TextField();
+        VBox vBox = new VBox(nameLabel, nameField, priceLabel, priceField, conditionLabel, conditionField); //Adding textfield to Vertical BOX
+        vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
         createBtn.setOnAction(e ->{
@@ -117,17 +122,23 @@ public class Main extends Application {
 
     }
     public void createStock(){
+        //Labels
+        Label nameLabel = new Label("Name");
+        Label quoteLabel = new Label("Quote");
+        Label priceLabel = new Label("Price");
+        Label amountLabel = new Label("Amount");
         //Borderpane
         BorderPane borderPane = new BorderPane();
         //Textfield for name
-        TextField nameField = new TextField("Name");
+        TextField nameField = new TextField();
         //Textfield for Stockquote
-        TextField quoteField = new TextField("Quote");
+        TextField quoteField = new TextField();
         //Textfield for price
-        TextField priceField = new TextField("Price");
+        TextField priceField = new TextField();
         //Textfield for condition
-        TextField amountField = new TextField("Amount");
-        VBox vBox = new VBox(nameField, quoteField, priceField, amountField); //Adding textfield to Vertical BOX
+        TextField amountField = new TextField();
+        VBox vBox = new VBox(nameLabel, nameField, quoteLabel, quoteField, priceLabel, priceField, amountLabel, amountField); //Adding textfield and labels to Vertical BOX
+        vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
         createBtn.setOnAction(e ->{
@@ -150,15 +161,19 @@ public class Main extends Application {
         window.setScene(deviceScene);
     }
     public void createJewelery(){
+        //Labels
+        Label nameLabel = new Label("Name");
+        Label gemLabel = new Label("Gems?");
         //Borderpane
         BorderPane borderPane = new BorderPane();
         //Textfield for name
-        TextField nameField = new TextField("Name");
+        TextField nameField = new TextField();
         //Textfield for price
-        TextField gemField = new TextField("Number of gems");
+        TextField gemField = new TextField();
         //Checkbox for isGold
         CheckBox isGoldChkBox = new CheckBox("Gold?");
-        VBox vBox = new VBox(nameField, gemField, isGoldChkBox); //Adding textfield and checkbox to Vertical BOX
+        VBox vBox = new VBox(nameLabel, nameField, gemLabel, gemField, isGoldChkBox); //Adding textfield and checkbox to Vertical BOX
+        vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
         createBtn.setOnAction(e ->{
