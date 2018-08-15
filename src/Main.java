@@ -37,10 +37,15 @@ public class Main extends Application {
         Button craschBtn = new Button("Crash");
         craschBtn.setOnAction(e-> marketCrasch());
 
-        //Choicebox
-        choiceBox = new ChoiceBox<>();
-        choiceBox.getItems().addAll("Stock", "Jewelery", "Device");
-        choiceBox.setOnAction(e -> addValuables(choiceBox.getValue()));
+        //MenuButton and items
+        MenuButton menuButton = new MenuButton("Select valuable to add.");
+        MenuItem stock = new MenuItem("Stock");
+        stock.setOnAction( e -> createStock());
+        MenuItem device = new MenuItem("Device");
+        device.setOnAction( e -> createDevice());
+        MenuItem jewelery = new MenuItem("Jewelery");
+        jewelery.setOnAction( e -> createJewelery());
+        menuButton.getItems().addAll(stock, device, jewelery);
 
         //Radiobuttons and sort-label
         RadioButton nameRadioBtn = new RadioButton("Name");
@@ -60,7 +65,7 @@ public class Main extends Application {
         //VBox for bottom buttons and choicebox
         HBox bottomHbox = new HBox();
         bottomHbox.setSpacing(10);
-        bottomHbox.getChildren().addAll(choiceBox, showBtn, craschBtn);
+        bottomHbox.getChildren().addAll(menuButton, showBtn, craschBtn);
         bottomHbox.setAlignment(Pos.CENTER);
         //Layout
         layout = new BorderPane();
@@ -79,19 +84,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-    public void addValuables(String typeOfValuable){
-        switch (typeOfValuable){
-            case "Stock":
-                createStock();
-                return;
-            case "Jewelery":
-                createJewelery();
-                return;
-            case "Device":
-                createDevice();
-                return;
-        }
     }
     public void createDevice(){
         //Labels

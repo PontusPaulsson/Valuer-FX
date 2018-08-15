@@ -2,15 +2,28 @@
    -fx-background-color: #CB772F;
    -fx-text-fill: #201F1D;
 }
-.choice-box{
+.menu-button{
     -fx-background-color: #CB772F;
 }
 
-.choice-box .label {
+.menu-button .label {
      -fx-text-fill: #201F1D;
+     -fx-background-color: #CB772F;
+}
+.menu-button .arrow-button {
+     -fx-background-color: #CB772F;
 }
 
-.choice-box .context-menu {
+.menu-button .arrow-button .arrow {/
+     -fx-background-color: #201F1D;
+}
+.menu-item{
+    -fx-background-color: #CB772F;
+}
+.menu-item:focused {
+   -fx-background-color: #CB772F;
+}
+.context-menu{
     -fx-background-color: #CB772F;
 }
 .radio-button .dot{
@@ -19,6 +32,10 @@
 }
 .list-view{
    -fx-background-color: #A9B7C6;
+}
+
+.menu-item:focused .label {
+  -fx-text-fill: white;
 }
 /*
 .list-cell:odd{
@@ -38,3 +55,4 @@
     -fx-font-size: 30;
     -fx-font-weight: bold;
 }
+
