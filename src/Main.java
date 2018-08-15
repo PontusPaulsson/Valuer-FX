@@ -1,4 +1,5 @@
 import javafx.application.*;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.layout.*;
@@ -26,6 +27,8 @@ public class Main extends Application {
 
         //Valuables label
         valuablesLbl = new Label("Valuables");
+        valuablesLbl.getStyleClass().add("valuables");
+        valuablesLbl.setPadding(new Insets(10,10,10,10));
         BorderPane.setAlignment(valuablesLbl, Pos.CENTER);
         //Show button
         Button showBtn = new Button("Show");
@@ -45,24 +48,30 @@ public class Main extends Application {
         RadioButton worthRadioBtn = new RadioButton("Worth");
         worthRadioBtn.setOnAction(e-> sort("Worth"));
         Label sortLbl = new Label("Sort");
+        sortLbl.getStyleClass().add("sort");
         ToggleGroup btnGroup = new ToggleGroup();
         nameRadioBtn.setToggleGroup(btnGroup);
         worthRadioBtn.setToggleGroup(btnGroup);
         VBox radioBtnHbox = new VBox(sortLbl, nameRadioBtn, worthRadioBtn);
         radioBtnHbox.setAlignment(Pos.CENTER);
+        radioBtnHbox.setSpacing(5);
+        radioBtnHbox.setPadding(new Insets(10,10,10,10));
 
         //VBox for bottom buttons and choicebox
         HBox bottomHbox = new HBox();
+        bottomHbox.setSpacing(10);
         bottomHbox.getChildren().addAll(choiceBox, showBtn, craschBtn);
         bottomHbox.setAlignment(Pos.CENTER);
         //Layout
         layout = new BorderPane();
+        layout.getStyleClass().add("borderpane");
         layout.setTop(valuablesLbl);
         layout.setCenter(listView);
         layout.setBottom(bottomHbox);
         layout.setRight(radioBtnHbox);
         //Scene
         introScene = new Scene(layout, 500,500);
+        introScene.getStylesheets().add("/src/style.css");
         window.setScene(introScene);
         window.show();
     }
@@ -91,6 +100,7 @@ public class Main extends Application {
         Label conditionLabel = new Label("Condition");
         //Borderpane
         BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-background-color: #A9B7C6");
         //Textfield for name
         TextField nameField = new TextField();
         //Textfield for price
@@ -129,6 +139,7 @@ public class Main extends Application {
         Label amountLabel = new Label("Amount");
         //Borderpane
         BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-background-color: #A9B7C6");
         //Textfield for name
         TextField nameField = new TextField();
         //Textfield for Stockquote
@@ -166,6 +177,7 @@ public class Main extends Application {
         Label gemLabel = new Label("Gems?");
         //Borderpane
         BorderPane borderPane = new BorderPane();
+        borderPane.setStyle("-fx-background-color: #A9B7C6");
         //Textfield for name
         TextField nameField = new TextField();
         //Textfield for price

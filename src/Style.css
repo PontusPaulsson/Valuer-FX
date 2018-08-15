@@ -1,0 +1,40 @@
+.button {
+   -fx-background-color: #CB772F;
+   -fx-text-fill: #201F1D;
+}
+.choice-box{
+    -fx-background-color: #CB772F;
+}
+
+.choice-box .label {
+     -fx-text-fill: #201F1D;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #CB772F;
+}
+.radio-button .dot{
+    -fx-mark-highlight-color: #CB772F;
+    -fx-mark-color: #DE8D47;
+}
+.list-view{
+   -fx-background-color: #A9B7C6;
+}
+/*
+.list-cell:odd{
+    -fx-background-color: #CB772F;
+}
+.list-cell:even{
+    -fx-background-color: #201F1D;
+}*/
+.borderpane{
+    -fx-background-color: #A9B7C6;
+}
+.sort{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.valuables{
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+}
