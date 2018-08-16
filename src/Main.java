@@ -10,15 +10,15 @@ import java.util.*;
 import java.lang.*;
 
 public class Main extends Application {
-    Stage window;
-    BorderPane layout;
-    Label valuablesLbl;
-    ListView<String> listView = new ListView<>();
-    ArrayList<Valuables> valuablesArrayList = new ArrayList<>();
-    ChoiceBox<String> choiceBox;
-    Scene introScene, deviceScene, jeweleryScene, stockScene;
-    CheckBox arrayListChkBox;
-    CheckBox dataBaseChkBox;
+    private Stage window;
+    private BorderPane layout;
+    private Label valuablesLbl;
+    private ListView<String> listView = new ListView<>();
+    private ArrayList<Valuables> valuablesArrayList = new ArrayList<>();
+    private ChoiceBox<String> choiceBox;
+    private Scene introScene, deviceScene, jeweleryScene, stockScene;
+    private CheckBox arrayListChkBox;
+    private CheckBox dataBaseChkBox;
     @Override
     public void start(Stage primaryStage) throws Exception{
         //SQLClient.insertDevice("Testar", 100, "Device", 100, 9);
@@ -89,7 +89,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    public void createDevice(){
+    private void createDevice(){
         //Labels
         Label nameLabel = new Label("Name");
         Label priceLabel = new Label("Price");
@@ -125,9 +125,7 @@ public class Main extends Application {
         });
         //Cancel button
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> {
-            window.setScene(introScene);
-        });
+        cancelButton.setOnAction(e -> window.setScene(introScene));
         HBox hBox = new HBox(createBtn, cancelButton); //Adding buttons to horizontal box
         hBox.setAlignment(Pos.BOTTOM_CENTER);
         //-------------------------
@@ -140,7 +138,7 @@ public class Main extends Application {
         window.setScene(deviceScene);
 
     }
-    public void createStock(){
+    private void createStock(){
         //Labels
         Label nameLabel = new Label("Name");
         Label quoteLabel = new Label("Quote");
@@ -177,9 +175,7 @@ public class Main extends Application {
         });
         //Cancel button
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> {
-            window.setScene(introScene);
-        });
+        cancelButton.setOnAction(e -> window.setScene(introScene));
         HBox hBox = new HBox(createBtn, cancelButton); //Adding buttons to horizontal box
         hBox.setAlignment(Pos.BOTTOM_CENTER);
         //-------------------------
@@ -190,7 +186,7 @@ public class Main extends Application {
         stockScene.getStylesheets().add("/src/style.css");
         window.setScene(stockScene);
     }
-    public void createJewelery(){
+    private void createJewelery(){
         //Labels
         Label nameLabel = new Label("Name");
         Label gemLabel = new Label("Gems?");
@@ -226,9 +222,7 @@ public class Main extends Application {
         });
         //Cancel button
         Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> {
-            window.setScene(introScene);
-        });
+        cancelButton.setOnAction(e -> window.setScene(introScene));
         HBox hBox = new HBox(createBtn, cancelButton); //Adding buttons to horizontal box
         hBox.setAlignment(Pos.BOTTOM_CENTER);
         //-------------------------
@@ -239,7 +233,7 @@ public class Main extends Application {
         jeweleryScene.getStylesheets().add("/src/style.css");
         window.setScene(jeweleryScene);
     }
-    public void showValuables(){
+    private void showValuables(){
         listView.getItems().clear();
         if(arrayListChkBox.isSelected()){
             for(Valuables v : valuablesArrayList){
@@ -250,9 +244,7 @@ public class Main extends Application {
                     listView.getItems().add("Jewelry: " + v.getName() + " Worth: " + v.getWorth() + " Gemstones: " + ((Jewelery) v).getGemStones() + " Type: " + ((Jewelery) v).getType());
                 }
                 else if(v instanceof Device)
-                {
                     listView.getItems().add("Device: " + v.getName() + " Worth " + v.getWorth() + " Condition: " + ((Device) v).getCondition() + " Price when bought: " + ((Device) v).getPriceWhenBought());
-                }
             }
         }
         if(dataBaseChkBox.isSelected()){
@@ -261,7 +253,7 @@ public class Main extends Application {
             }
         }
     }
-    public void sort(String sort) {
+    private void sort(String sort) {
         if(sort.equals("Name"))
         {
             valuablesArrayList.sort(Comparator.comparing(Valuables::getName));
@@ -272,7 +264,7 @@ public class Main extends Application {
         }
         showValuables();
     }
-    public void marketCrasch(){
+    private void marketCrasch(){
         for(Valuables v : valuablesArrayList){
             if(v instanceof Stock){
                 v.setWorth(0);

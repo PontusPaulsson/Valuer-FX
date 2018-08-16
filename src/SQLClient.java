@@ -12,7 +12,6 @@ public class SQLClient {
     private static final String USERNAME = "GasCan";
     private static final String PASSWORD = "greger1337";
 
-
     public static void insertStock(String name, double worth, String type, String quote, int amount){
         try
         {
@@ -48,7 +47,6 @@ public class SQLClient {
             statement.executeUpdate("INSERT INTO dbo.valuables VALUES('" + uuid.toString() + "','" + name + "','" + type + "'," + worth + ")");
             statement.executeUpdate("INSERT INTO dbo.jewelery VALUES('" + gemStones + "'," + gold + ",'" + uuid.toString() + "')");
             conn.close();
-
         }
         catch (Exception e)
         {
@@ -68,7 +66,6 @@ public class SQLClient {
             statement.executeUpdate("INSERT INTO dbo.valuables VALUES('" + uuid.toString() + "','" + name + "','" + type + "'," + worth + ")");
             statement.executeUpdate("INSERT INTO dbo.jewelery VALUES(" + priceWhenBought + "," + condition + ",'" + uuid.toString() + "')");
             conn.close();
-
         }
         catch (Exception e)
         {
@@ -78,7 +75,6 @@ public class SQLClient {
     }
     public static ArrayList<String> selectAll(){
         ArrayList<String> valuables = new ArrayList<>();
-
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection conn = DriverManager.getConnection(CONN_STRING, USERNAME, PASSWORD);
@@ -104,8 +100,6 @@ public class SQLClient {
             while (rs.next()){
                 valuables.add("Stock: " + rs.getString("Name") + " Worth: " + rs.getDouble("Worth") + " Quote: " + rs.getString("StockQuote") + " Amount: " + rs.getString("Amount"));
             }
-
-
         }
         catch(Exception e){
             System.err.println("Exception caught: ");

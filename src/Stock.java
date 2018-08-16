@@ -1,4 +1,3 @@
-//Worth should be stockQuote * worth;
 public class Stock extends Valuables {
     private String stockQuote;
     private int amount;
@@ -27,7 +26,8 @@ public class Stock extends Valuables {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    public void calculateWorth(){
+
+    private void calculateWorth(){
         worth = price * amount;
     }
 }
