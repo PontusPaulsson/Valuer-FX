@@ -17,9 +17,11 @@ public class Main extends Application {
     ArrayList<Valuables> valuablesArrayList = new ArrayList<>();
     ChoiceBox<String> choiceBox;
     Scene introScene, deviceScene, jeweleryScene, stockScene;
-
+    CheckBox arrayListChkBox;
+    CheckBox dataBaseChkBox;
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //SQLClient.insertDevice("Testar", 100, "Device", 100, 9);
 
         //Set window to Primarystage for better naming.
         window = primaryStage;
@@ -61,11 +63,13 @@ public class Main extends Application {
         radioBtnHbox.setAlignment(Pos.CENTER);
         radioBtnHbox.setSpacing(5);
         radioBtnHbox.setPadding(new Insets(10,10,10,10));
-
+        //Checkboxes arraylist or database
+        dataBaseChkBox = new CheckBox("Database");
+        arrayListChkBox = new CheckBox("Arraylist");
         //VBox for bottom buttons and choicebox
         HBox bottomHbox = new HBox();
         bottomHbox.setSpacing(10);
-        bottomHbox.getChildren().addAll(menuButton, showBtn, craschBtn);
+        bottomHbox.getChildren().addAll(dataBaseChkBox, arrayListChkBox,menuButton, showBtn, craschBtn);
         bottomHbox.setAlignment(Pos.CENTER);
         //Layout
         layout = new BorderPane();
@@ -98,13 +102,24 @@ public class Main extends Application {
         //Textfield for price
         TextField priceField = new TextField();
         //Textfield for condition
+
+        //Checkbox for storing in arraylist or database
+        arrayListChkBox = new CheckBox("Arraylist");
+        dataBaseChkBox = new CheckBox("Database");
+
         TextField conditionField = new TextField();
-        VBox vBox = new VBox(nameLabel, nameField, priceLabel, priceField, conditionLabel, conditionField); //Adding textfield to Vertical BOX
+        VBox vBox = new VBox(nameLabel, nameField, priceLabel, priceField, conditionLabel, conditionField, arrayListChkBox, dataBaseChkBox); //Adding textfield to Vertical BOX
         vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
         createBtn.setOnAction(e ->{
-            valuablesArrayList.add(new Device(nameField.getText(), Double.parseDouble(priceField.getText()), Integer.parseInt(conditionField.getText())));
+            Device d = new Device(nameField.getText(), Double.parseDouble(priceField.getText()), Integer.parseInt(conditionField.getText()));
+            if(arrayListChkBox.isSelected()){
+                valuablesArrayList.add(d);
+            }
+            if(dataBaseChkBox.isSelected()){
+                SQLClient.insertDevice(d.getName(), d.getWorth(), "Device", d.getPriceWhenBought(), d.getCondition());
+            }
             showValuables();
             window.setScene(introScene);
         });
@@ -118,8 +133,10 @@ public class Main extends Application {
         //-------------------------
         borderPane.setBottom(hBox);
         borderPane.setCenter(vBox);
+
         //-------------------------
         deviceScene = new Scene(borderPane, 300,300);
+        deviceScene.getStylesheets().add("/src/style.css");
         window.setScene(deviceScene);
 
     }
@@ -139,13 +156,22 @@ public class Main extends Application {
         //Textfield for price
         TextField priceField = new TextField();
         //Textfield for condition
+        //Checkbox for storing in arraylist or database
+        arrayListChkBox = new CheckBox("Arraylist");
+        dataBaseChkBox = new CheckBox("Database");
         TextField amountField = new TextField();
-        VBox vBox = new VBox(nameLabel, nameField, quoteLabel, quoteField, priceLabel, priceField, amountLabel, amountField); //Adding textfield and labels to Vertical BOX
+        VBox vBox = new VBox(nameLabel, nameField, quoteLabel, quoteField, priceLabel, priceField, amountLabel, amountField, arrayListChkBox, dataBaseChkBox); //Adding textfield and labels to Vertical BOX
         vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
         createBtn.setOnAction(e ->{
-            valuablesArrayList.add(new Stock(nameField.getText(), quoteField.getText(), Integer.parseInt(amountField.getText()), Double.parseDouble(priceField.getText())));
+            Stock s = new Stock(nameField.getText(), quoteField.getText(), Integer.parseInt(amountField.getText()), Double.parseDouble(priceField.getText()));
+            if(arrayListChkBox.isSelected()){
+                valuablesArrayList.add(s);
+            }
+            if(dataBaseChkBox.isSelected()){
+                SQLClient.insertStock(s.getName(),s.getWorth() , "Stock", s.getStockQuote(), s.getAmount());
+            }
             showValuables();
             window.setScene(introScene);
         });
@@ -160,8 +186,9 @@ public class Main extends Application {
         borderPane.setBottom(hBox);
         borderPane.setCenter(vBox);
         //-------------------------
-        deviceScene = new Scene(borderPane, 300,300);
-        window.setScene(deviceScene);
+        stockScene = new Scene(borderPane, 300,300);
+        stockScene.getStylesheets().add("/src/style.css");
+        window.setScene(stockScene);
     }
     public void createJewelery(){
         //Labels
@@ -176,7 +203,10 @@ public class Main extends Application {
         TextField gemField = new TextField();
         //Checkbox for isGold
         CheckBox isGoldChkBox = new CheckBox("Gold?");
-        VBox vBox = new VBox(nameLabel, nameField, gemLabel, gemField, isGoldChkBox); //Adding textfield and checkbox to Vertical BOX
+        //Checkbox for storing in arraylist or database
+        arrayListChkBox = new CheckBox("Arraylist");
+        dataBaseChkBox = new CheckBox("Database");
+        VBox vBox = new VBox(nameLabel, nameField, gemLabel, gemField, isGoldChkBox, arrayListChkBox, dataBaseChkBox); //Adding textfield and checkbox to Vertical BOX
         vBox.setMaxWidth(200);
         //Create button
         Button createBtn = new Button("Create");
@@ -184,7 +214,13 @@ public class Main extends Application {
             boolean isGold = false;
             if(isGoldChkBox.isSelected())
                 isGold = true;
-            valuablesArrayList.add(new Jewelery(nameField.getText(), isGold, Integer.parseInt(gemField.getText())));
+            Jewelery j = new Jewelery(nameField.getText(), isGold, Integer.parseInt(gemField.getText()));
+            if(arrayListChkBox.isSelected()){
+                valuablesArrayList.add(j);
+            }
+            if(dataBaseChkBox.isSelected()){
+                SQLClient.insertJewelery(j.getName(), j.getWorth(), "Jewelery", j.getGemStones(), isGold );
+            }
             showValuables();
             window.setScene(introScene);
         });
@@ -199,22 +235,30 @@ public class Main extends Application {
         borderPane.setBottom(hBox);
         borderPane.setCenter(vBox);
         //-------------------------
-        deviceScene = new Scene(borderPane, 300,300);
-        window.setScene(deviceScene);
+        jeweleryScene = new Scene(borderPane, 300,300);
+        jeweleryScene.getStylesheets().add("/src/style.css");
+        window.setScene(jeweleryScene);
     }
     public void showValuables(){
         listView.getItems().clear();
-        for(Valuables v : valuablesArrayList){
-           if(v instanceof Stock){
-               listView.getItems().add("Stock: " + v.getName() + " Quote: " + ((Stock) v).getStockQuote() + " Amount: " + ((Stock) v).getAmount() + " Worth: " + v.getWorth());
-           }
-           else if(v instanceof Jewelery){
-               listView.getItems().add("Jewelry: " + v.getName() + " Worth: " + v.getWorth() + " Gemstones: " + ((Jewelery) v).getGemStones() + " Type: " + ((Jewelery) v).getType());
-           }
-           else if(v instanceof Device)
-           {
-               listView.getItems().add("Device: " + v.getName() + " Worth " + v.getWorth() + " Condition: " + ((Device) v).getCondition() + " Price when bought: " + ((Device) v).getPriceWhenBought());
-           }
+        if(arrayListChkBox.isSelected()){
+            for(Valuables v : valuablesArrayList){
+                if(v instanceof Stock){
+                    listView.getItems().add("Stock: " + v.getName() + " Quote: " + ((Stock) v).getStockQuote() + " Amount: " + ((Stock) v).getAmount() + " Worth: " + v.getWorth());
+                }
+                else if(v instanceof Jewelery){
+                    listView.getItems().add("Jewelry: " + v.getName() + " Worth: " + v.getWorth() + " Gemstones: " + ((Jewelery) v).getGemStones() + " Type: " + ((Jewelery) v).getType());
+                }
+                else if(v instanceof Device)
+                {
+                    listView.getItems().add("Device: " + v.getName() + " Worth " + v.getWorth() + " Condition: " + ((Device) v).getCondition() + " Price when bought: " + ((Device) v).getPriceWhenBought());
+                }
+            }
+        }
+        if(dataBaseChkBox.isSelected()){
+            for(String s : SQLClient.selectAll()){
+                listView.getItems().add(s);
+            }
         }
     }
     public void sort(String sort) {
