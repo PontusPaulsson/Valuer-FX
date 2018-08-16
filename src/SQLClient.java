@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 public class SQLClient {
-    private static final String CONN_STRING = "jdbc:sqlserver://gascanius.ddns.net:1433;databaseName=Valuables;";
-    private static final String USERNAME = "GasCan";
+    private static final String CONN_STRING = "";
+    private static final String USERNAME = "";
     private static final String PASSWORD = "";
 
     public static void insertStock(String name, double worth, String type, String quote, int amount){
